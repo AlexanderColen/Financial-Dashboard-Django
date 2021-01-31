@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'expenditures.apps.ExpendituresConfig',
     'income.apps.IncomeConfig',
+    'debt.apps.DebtConfig',
 ]
 
 MIDDLEWARE = [
