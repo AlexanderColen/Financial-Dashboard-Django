@@ -1,3 +1,6 @@
+"""
+Define URL routes for Debt component.
+"""
 from django.urls import path
 from debt import views
 

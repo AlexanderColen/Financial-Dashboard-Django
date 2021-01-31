@@ -1,6 +1,9 @@
+"""
+API endpoints for Expenditure & ExpenditureType CRUD.
+"""
 from rest_framework import permissions, generics
-from expenditures.serializers import ExpenditureSerializer, TypeSerializer, ExpenditureReadSerializer
-from expenditures.models import Expenditure, Type
+from expenditures.serializers import ExpenditureSerializer, ExpenditureTypeSerializer, ExpenditureReadSerializer
+from expenditures.models import Expenditure, ExpenditureType
 
 
 class ExpenditureList(generics.ListCreateAPIView):
@@ -14,7 +17,7 @@ class ExpenditureList(generics.ListCreateAPIView):
     def get_serializer_class(self):
         """"
         Override the serializer class when reading an Expenditure
-        to show the nested Type in full.
+        to show the nested ExpenditureType in full.
         """
         if self.request.method in ('GET',):
             return ExpenditureReadSerializer
@@ -32,26 +35,26 @@ class ExpenditureDetail(generics.RetrieveUpdateDestroyAPIView):
     def get_serializer_class(self):
         """"
         Override the serializer class when reading an Expenditure
-        to show the nested Type in full.
+        to show the nested ExpenditureType in full.
         """
         if self.request.method in ('GET',):
             return ExpenditureReadSerializer
         return ExpenditureSerializer
 
 
-class TypeList(generics.ListCreateAPIView):
+class ExpenditureTypeList(generics.ListCreateAPIView):
     """
-    List or create a Type.
+    List or create a ExpenditureType.
     """
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
+    queryset = ExpenditureType.objects.all()
+    serializer_class = ExpenditureTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
-class TypeDetail(generics.RetrieveUpdateDestroyAPIView):
+class ExpenditureTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Get, create, update or delete a Type.
+    Get, create, update or delete a ExpenditureType.
     """
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
+    queryset = ExpenditureType.objects.all()
+    serializer_class = ExpenditureTypeSerializer
     permission_classes = [permissions.IsAuthenticated]

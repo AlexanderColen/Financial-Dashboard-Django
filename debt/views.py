@@ -1,3 +1,6 @@
+"""
+API endpoints for Debt & Payment CRUD.
+"""
 from rest_framework import permissions, generics
 from debt.serializers import DebtSerializer, PaymentSerializer, DebtReadSerializer, PaymentReadSerializer
 from debt.models import Debt, Payment

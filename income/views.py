@@ -1,7 +1,9 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, permissions, generics
-from income.serializers import IncomeSerializer, TypeSerializer, IncomeReadSerializer
-from income.models import Income, Type
+"""
+API endpoints for Income & IncomeType CRUD.
+"""
+from rest_framework import permissions, generics
+from income.serializers import IncomeSerializer, IncomeTypeSerializer, IncomeReadSerializer
+from income.models import Income, IncomeType
 
 
 class IncomeList(generics.ListCreateAPIView):
@@ -15,7 +17,7 @@ class IncomeList(generics.ListCreateAPIView):
     def get_serializer_class(self):
         """"
         Override the serializer class when reading an Income
-        to show the nested Type in full.
+        to show the nested IncomeType in full.
         """
         if self.request.method in ('GET',):
             return IncomeReadSerializer
@@ -33,26 +35,26 @@ class IncomeDetail(generics.RetrieveUpdateDestroyAPIView):
     def get_serializer_class(self):
         """"
         Override the serializer class when reading an Income
-        to show the nested Type in full.
+        to show the nested IncomeType in full.
         """
         if self.request.method in ('GET',):
             return IncomeReadSerializer
         return IncomeSerializer
 
 
-class TypeList(generics.ListCreateAPIView):
+class IncomeTypeList(generics.ListCreateAPIView):
     """
-    List or create a Type.
+    List or create a IncomeType.
     """
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
+    queryset = IncomeType.objects.all()
+    serializer_class = IncomeTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
-class TypeDetail(generics.RetrieveUpdateDestroyAPIView):
+class IncomeTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Get, create, update or delete a Type.
+    Get, create, update or delete a IncomeType.
     """
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
+    queryset = IncomeType.objects.all()
+    serializer_class = IncomeTypeSerializer
     permission_classes = [permissions.IsAuthenticated]

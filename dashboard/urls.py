@@ -1,3 +1,6 @@
+"""
+Define URL routes for entire project.
+"""
 from django.urls import include, path
 from rest_framework import routers
 from dashboard import views
